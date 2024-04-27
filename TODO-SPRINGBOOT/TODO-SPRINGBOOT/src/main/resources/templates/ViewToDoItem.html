@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Todo - ViewTodoList</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+	<style>
+		.incomplete {
+			background-color: yellow;
+		}
+
+		.completed {
+			background-color: green;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class="container mt-5">
+
+		<h1 class="text-center mb-5">ToDo List</h1>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Action</th>
+					<th scope="col">TodoId</th>
+					<th scope="col">Description</th>
+					<th scope="col">createdDate</th>
+					
+					<th scope="col">Status</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="todo:${TodoList}">
+
+					<td>
+
+						<a class="btn btn-primary btn-sm" th:href="@{editTodo/{id}(id=${todo.id})}">Edit</a>
+						<a class="btn btn-danger btn-sm" th:href="@{deleteTodo/{id}(id=${todo.id})}">Delete</a>
+
+					</td>
+
+					<td th:text="${todo.id}"></td>
+					<td th:text="${todo.description}"></td>
+					<td th:text="${todo.createdDate}"></td>
+					<td th:text="${todo.completionDate}"></td>
+					<td th:text="${todo.completed ? 'completed' : 'incomplete'}"
+						th:class="${todo.completed ? 'table-success' : 'table-warning'}"></td>
+
+				</tr>
+
+
+			</tbody>
+		</table>
+	</div>
+
+
+
+	<div class="container text-center mt-5">
+		
+		<a class="btn btn-secondary px-5" href="/addTodoItem">Add New Todo</a>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+
+
+</body>
+
+</html>
